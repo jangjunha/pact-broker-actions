@@ -1,0 +1,23 @@
+name: Publish Pact Files
+description: Publish pact files to pact broker
+inputs:
+  target:
+    description: Pact files location
+    default: pacts/
+    required: true
+  version:
+    required: true
+  PACT_BROKER_URL:
+    description: Pact Broker URL
+    required: true
+  PACT_BROKER_USERNAME:
+    required: true
+  PACT_BROKER_PASSWORD:
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: run.sh
+      shell: bash
