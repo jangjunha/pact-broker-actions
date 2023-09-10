@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+echo "Target: $target"
+echo "Version: $version"
+
 docker run --rm \
 	-w ${PWD} \
 	-v ${PWD}:${PWD} \
