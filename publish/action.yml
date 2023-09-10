@@ -7,16 +7,23 @@ inputs:
     required: true
   version:
     required: true
-  PACT_BROKER_URL:
+  broker_url:
     description: Pact Broker URL
     required: true
-  PACT_BROKER_USERNAME:
+  broker_username:
     required: true
-  PACT_BROKER_PASSWORD:
+  broker_password:
     required: true
 runs:
   using: composite
   steps:
+    - run: |
+        echo "PACT_TARGET=${{ inputs.target }}" >> $GITHUB_ENV
+        echo "PACT_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+        echo "PACT_BROKER_URL=${{ inputs.broker_url }}" >> $GITHUB_ENV
+        echo "PACT_BROKER_USERNAME=${{ inputs.broker_username }}" >> $GITHUB_ENV
+        echo "PACT_BROKER_PASSWORD=${{ inputs.broker_password }}" >> $GITHUB_ENV
+      shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
     - run: run.sh

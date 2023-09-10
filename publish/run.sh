@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Target: $target"
-echo "Version: $version"
+echo "Target: $PACT_TARGET"
+echo "Version: $PACT_VERSION"
 
 docker run --rm \
 	-w ${PWD} \
@@ -11,6 +11,6 @@ docker run --rm \
 	-e PACT_BROKER_PASSWORD=$PACT_BROKER_PASSWORD \
 	pactfoundation/pact-cli \
 	publish \
-	$target \
-	--consumer-app-version $version \
+	$PACT_TARGET \
+	--consumer-app-version $PACT_VERSION \
 	--branch $GITHUB_REF_NAME
