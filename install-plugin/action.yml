@@ -1,0 +1,21 @@
+name: Install Pact Plugin
+inputs:
+  source:
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+    - uses: actions-rs/cargo@v1
+      with:
+        command: install
+        args: pact-plugin-cli
+
+    - shell: bash
+      run: |
+        pact-plugin-cli install ${{ inputs.source }}
