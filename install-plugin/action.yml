@@ -13,4 +13,4 @@ runs:
         curl -sLO -sL 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.1.0/pact-plugin-cli-linux-x86_64.gz'
         gunzip -f pact-plugin-cli-linux-x86_64.gz
         chmod +x pact-plugin-cli-linux-x86_64
-        ./pact-plugin-cli-linux-x86_64 install ${{ inputs.source }}
+        ./pact-plugin-cli-linux-x86_64 install ${{ inputs.source }} || true
